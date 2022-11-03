@@ -21,7 +21,7 @@ function App() {
 
 
 
-  const sortOptions = ["id", "title", "duration", "time", "untis", "paid", "price", "user"]
+  const sortOptions = ["id", "title", "duration", "time", "untis", "paid", "price", "user", "rating", "num_reviews"]
 
   useEffect(() => {
     loadData(0, 50, 0);
@@ -167,6 +167,8 @@ function App() {
                   <th scope='col'> Paid </th>
                   <th scope='col'> Price </th>
                   <th scope='col'> User </th>
+                  <th scope='col'> Rating </th>
+                  <th scope='col'> Reviews </th>                  
                 </tr>
               </MDBTableHead>
               {data.length === 0 ? (
@@ -188,6 +190,8 @@ function App() {
                       <td>{item.paid}</td>
                       <td>{item.price}</td>
                       <td>{item.user}</td>
+                      <td>{item.rating}</td>
+                      <td>{item.num_reviews}</td>
                     </tr>
                   </MDBTableBody>)
                 })
