@@ -47,6 +47,14 @@ function App() {
           setCurrentPage(currentPage + increase)
         }).catch((err) => console.log(err))
 
+      case "filter":
+        setOperation(type)
+        setValue(value)
+        return await axios.get(`http://localhost:8000/courses?paid=${value}&_start=${start}&_end=${end}`).then((response) => {
+          setData(response.data)
+          setCurrentPage(currentPage + increase)
+        }).catch((err) => console.log(err))
+
 
       default:
         setOperation(type)
@@ -69,7 +77,7 @@ function App() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    loadData(0, 50, 0, "search", )
+    loadData(0, 50, 0, "search",)
   }
 
   const handleSort = async (val) => {
@@ -79,9 +87,8 @@ function App() {
   }
 
   const handleFilter = async (value) => {
-    return await axios.get(`http://localhost:8000/courses?paid=${value}`).then((response) => {
-      setData(response.data)
-    }).catch((err) => console.log(err))
+    setSortValue(value)
+    loadData(0, 50, 0, "filter", value)
   }
 
   const renderPagination = () => {
